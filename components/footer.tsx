@@ -55,7 +55,7 @@ const CATEGORIES = [
 
 function FooterHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-xs font-semibold tracking-widest text-[#F28C45] uppercase">
+    <h2 className="text-xs font-semibold tracking-widest text-[#F7F6F0] uppercase">
       {children}
     </h2>
   )
@@ -65,12 +65,16 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-white/10 bg-[#142B4A] text-white">
+    <footer className="border-t border-[#F7F6F0]/10 bg-[#414A35] text-[#F7F6F0]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-4">
-            <Logo markClassName="size-8" />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
+            <Logo
+              markClassName="size-8"
+              textClassName="text-[#F7F6F0]"
+              mateClassName="text-[#A8B39A]"
+            />
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#F7F6F0]/75">
               Reliable home repair and maintenance services — trusted
               professionals, upfront pricing, and work built to last.
             </p>
@@ -82,7 +86,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="inline-flex items-center justify-center rounded-lg border border-white/15 p-2.5 text-white/80 transition-colors hover:border-[#F28C45] hover:bg-[#F28C45]/10 hover:text-[#F28C45] focus-visible:ring-2 focus-visible:ring-[#F28C45]/70 focus-visible:outline-none"
+                    className="inline-flex items-center justify-center rounded-lg border border-[#F7F6F0]/20 p-2.5 text-[#F7F6F0]/85 transition-colors hover:border-[#A8B39A] hover:bg-[#A8B39A]/15 hover:text-[#A8B39A] focus-visible:ring-2 focus-visible:ring-[#A8B39A]/70 focus-visible:outline-none"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -107,7 +111,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/70 transition-colors hover:text-white"
+                      className="text-sm text-[#F7F6F0]/75 transition-colors hover:text-[#F7F6F0]"
                     >
                       {link.label}
                     </Link>
@@ -124,7 +128,7 @@ export function Footer() {
                 <li key={category}>
                   <Link
                     href="/services"
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-[#F7F6F0]/75 transition-colors hover:text-[#F7F6F0]"
                   >
                     {category}
                   </Link>
@@ -138,28 +142,28 @@ export function Footer() {
             <address className="mt-4 space-y-3 not-italic">
               <a
                 href={`mailto:${CONTACT.email}`}
-                className="flex items-start gap-3 text-sm text-white/70 transition-colors hover:text-white"
+                className="flex items-start gap-3 text-sm text-[#F7F6F0]/75 transition-colors hover:text-[#F7F6F0]"
               >
                 <Mail
                   aria-hidden="true"
-                  className="mt-0.5 size-4 shrink-0 text-[#F28C45]"
+                  className="mt-0.5 size-4 shrink-0 text-[#A8B39A]"
                 />
                 <span>{CONTACT.email}</span>
               </a>
               <a
                 href={CONTACT.phone.href}
-                className="flex items-start gap-3 text-sm text-white/70 transition-colors hover:text-white"
+                className="flex items-start gap-3 text-sm text-[#F7F6F0]/75 transition-colors hover:text-[#F7F6F0]"
               >
                 <Phone
                   aria-hidden="true"
-                  className="mt-0.5 size-4 shrink-0 text-[#F28C45]"
+                  className="mt-0.5 size-4 shrink-0 text-[#A8B39A]"
                 />
                 <span>{CONTACT.phone.label}</span>
               </a>
-              <div className="flex items-start gap-3 text-sm text-white/70">
+              <div className="flex items-start gap-3 text-sm text-[#F7F6F0]/75">
                 <MapPin
                   aria-hidden="true"
-                  className="mt-0.5 size-4 shrink-0 text-[#F28C45]"
+                  className="mt-0.5 size-4 shrink-0 text-[#A8B39A]"
                 />
                 <span>{CONTACT.address}</span>
               </div>
@@ -168,9 +172,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-[#F7F6F0]/10">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
-          <p className="text-sm text-white/60">
+          <p className="text-sm text-[#F7F6F0]/65">
             © {year} FixMate. All rights reserved.
           </p>
         </div>

@@ -4,9 +4,15 @@ type LogoProps = {
   className?: string
   markClassName?: string
   textClassName?: string
+  mateClassName?: string
 }
 
-export function Logo({ className, markClassName, textClassName }: LogoProps) {
+export function Logo({
+  className,
+  markClassName,
+  textClassName,
+  mateClassName,
+}: LogoProps) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
       <svg
@@ -16,10 +22,10 @@ export function Logo({ className, markClassName, textClassName }: LogoProps) {
         className={cn("size-9 shrink-0", markClassName)}
         fill="none"
       >
-        <rect width="40" height="40" rx="10" fill="#F28C45" />
+        <rect width="40" height="40" rx="10" fill="#596B3F" />
         <g
           transform="translate(8 8)"
-          stroke="#142B4A"
+          stroke="#F7F6F0"
           strokeWidth="2.2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -29,11 +35,12 @@ export function Logo({ className, markClassName, textClassName }: LogoProps) {
       </svg>
       <span
         className={cn(
-          "text-xl font-bold tracking-tight text-white",
+          "text-xl font-bold tracking-tight text-[#596B3F]",
           textClassName
         )}
       >
-        Fix<span className="text-[#F28C45]">Mate</span>
+        Fix
+        <span className={cn("text-[#414A35]", mateClassName)}>Mate</span>
       </span>
     </span>
   )

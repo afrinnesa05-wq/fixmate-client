@@ -35,12 +35,12 @@ export function Navbar() {
   const closeMobileMenu = () => setMobileOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#A5A58D]/30 bg-[#F7F6EF]">
+    <header className="sticky top-0 z-50 border-b border-[#A5A58D]/30 bg-[#F7F6F0]">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
           aria-label="FixMate home"
-          className="shrink-0 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[#667044]/50"
+          className="shrink-0 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[#596B3F]/50"
         >
           <Logo markClassName="size-8" />
         </Link>
@@ -54,10 +54,10 @@ export function Navbar() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative flex h-16 items-center px-3 text-sm font-medium transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:bg-[#667044] after:transition-transform after:content-['']",
+                  "relative flex h-16 items-center px-3 text-sm font-medium transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:rounded-full after:bg-[#596B3F] after:transition-transform after:content-['']",
                   active
-                    ? "text-[#667044] after:scale-x-100"
-                    : "text-[#292A24]/75 after:scale-x-0 hover:text-[#292A24]"
+                    ? "text-[#596B3F] after:scale-x-100"
+                    : "text-[#30352B]/75 after:scale-x-0 hover:text-[#414A35]"
                 )}
               >
                 {item.label}
@@ -72,14 +72,14 @@ export function Navbar() {
               render={<Link href="/sign-in" />}
               nativeButton={false}
               variant="ghost"
-              className="h-9 px-4 text-[#292A24] hover:bg-[#A5A58D]/25 hover:text-[#292A24]"
+              className="h-9 px-4 text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
             >
               Sign In
             </Button>
             <Button
               render={<Link href="/sign-up" />}
               nativeButton={false}
-              className="h-9 bg-[#667044] px-4 font-semibold text-[#F7F6EF] hover:bg-[#667044]/90 hover:text-[#F7F6EF]"
+              className="h-9 bg-[#596B3F] px-4 font-semibold text-[#F7F6F0] hover:bg-[#414A35] hover:text-[#F7F6F0]"
             >
               Sign Up
             </Button>
@@ -91,7 +91,7 @@ export function Navbar() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-[#292A24] hover:bg-[#A5A58D]/25 hover:text-[#292A24] md:hidden"
+                  className="text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35] md:hidden"
                 />
               }
             >
@@ -100,7 +100,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="left"
-              className="gap-0 border-[#A5A58D]/30 bg-[#F7F6EF] p-0 text-[#292A24]"
+              className="gap-0 border-[#A5A58D]/30 bg-[#F7F6F0] p-0 text-[#30352B]"
             >
               <SheetHeader className="border-b border-[#A5A58D]/30">
                 <SheetTitle className="sr-only">Navigation menu</SheetTitle>
@@ -119,8 +119,8 @@ export function Navbar() {
                       className={cn(
                         "flex items-center gap-3 rounded-lg border-l-2 px-3 py-2.5 text-sm font-medium transition-colors",
                         active
-                          ? "border-[#667044] bg-[#667044]/10 text-[#667044]"
-                          : "border-transparent text-[#292A24]/75 hover:bg-[#A5A58D]/15 hover:text-[#292A24]"
+                          ? "border-[#596B3F] bg-[#596B3F]/10 text-[#596B3F]"
+                          : "border-transparent text-[#30352B]/75 hover:bg-[#596B3F]/10 hover:text-[#414A35]"
                       )}
                     >
                       <item.icon className="size-4" />
@@ -135,7 +135,7 @@ export function Navbar() {
                   render={<Link href="/sign-in" />}
                   nativeButton={false}
                   variant="outline"
-                  className="border-[#A5A58D]/40 bg-transparent text-[#292A24] hover:bg-[#A5A58D]/20 hover:text-[#292A24]"
+                  className="border-[#596B3F]/40 bg-transparent text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
                   onClick={closeMobileMenu}
                 >
                   Sign In
@@ -143,7 +143,7 @@ export function Navbar() {
                 <Button
                   render={<Link href="/sign-up" />}
                   nativeButton={false}
-                  className="bg-[#667044] font-semibold text-[#F7F6EF] hover:bg-[#667044]/90 hover:text-[#F7F6EF]"
+                  className="bg-[#596B3F] font-semibold text-[#F7F6F0] hover:bg-[#414A35] hover:text-[#F7F6F0]"
                   onClick={closeMobileMenu}
                 >
                   Sign Up
