@@ -1,43 +1,44 @@
-import { auth, mongoReady } from "@/lib/auth"
+
+import { getAuth } from "@/lib/auth"
 import { toNextJsHandler } from "better-auth/next-js"
 
-/**
- * Better Auth App Router handler.
- *
- * Serves signup / signin / signout / session under `/api/auth/*` using the
- * MongoDB Adapter config in `lib/auth.ts` (same database and secret as the
- * Express backend so JWT minting via `POST /auth/token` keeps working).
- */
-const handler = toNextJsHandler(auth)
+type HandlerMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
 
-async function withMongo(
+async function withAuth(
   request: Request,
-  run: (req: Request) => Promise<Response>
+  method: HandlerMethod
 ): Promise<Response> {
   try {
-    await mongoReady
+    const auth = await getAuth()
+    const handler = toNextJsHandler(auth)
+
+    return await handler[method](request)
   } catch (err) {
-    console.error("[Better Auth route] Mongo not ready:", err)
+    console.error("[Better Auth] Initialization failed:", err)
+
     return Response.json(
-      { error: "Database unavailable. Check MONGODB_URI / network." },
+      { error: "Database unavailable. Check server configuration." },
       { status: 503 }
     )
   }
-  return run(request)
 }
 
 export async function GET(request: Request) {
-  return withMongo(request, handler.GET)
+  return withAuth(request, "GET")
 }
+
 export async function POST(request: Request) {
-  return withMongo(request, handler.POST)
+  return withAuth(request, "POST")
 }
+
 export async function PUT(request: Request) {
-  return withMongo(request, handler.PUT)
+  return withAuth(request, "PUT")
 }
+
 export async function PATCH(request: Request) {
-  return withMongo(request, handler.PATCH)
+  return withAuth(request, "PATCH")
 }
+
 export async function DELETE(request: Request) {
-  return withMongo(request, handler.DELETE)
+  return withAuth(request, "DELETE")
 }
