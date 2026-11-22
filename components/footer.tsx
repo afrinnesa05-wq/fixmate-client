@@ -43,14 +43,14 @@ const QUICK_LINKS = [
   { label: "About", href: "/about" },
 ] as const
 
-// TODO: point each category at its own page (e.g. /services/plumbing) when it exists.
 const CATEGORIES = [
-  "Plumbing",
-  "Electrical",
-  "AC Repair",
-  "Cleaning",
-  "Painting",
-  "Appliance Repair",
+  { label: "Smartphone", slug: "smartphone" },
+  { label: "Laptop & PC", slug: "laptop-pc" },
+  { label: "AC", slug: "ac" },
+  { label: "Refrigerator", slug: "refrigerator" },
+  { label: "TV", slug: "tv" },
+  { label: "Washing Machine", slug: "washing-machine" },
+  { label: "Electrical", slug: "electrical" },
 ] as const
 
 function FooterHeading({ children }: { children: React.ReactNode }) {
@@ -125,12 +125,12 @@ export function Footer() {
             <FooterHeading>Popular Categories</FooterHeading>
             <ul className="mt-4 space-y-3">
               {CATEGORIES.map((category) => (
-                <li key={category}>
+                <li key={category.slug}>
                   <Link
-                    href="/services"
+                    href={`/services?category=${category.slug}`}
                     className="text-sm text-[#F7F6F0]/75 transition-colors hover:text-[#F7F6F0]"
                   >
-                    {category}
+                    {category.label}
                   </Link>
                 </li>
               ))}

@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
-import { Home, Info, Menu, Wrench } from "lucide-react"
+import { Home, Info, LogOut, Menu, User, Wrench } from "lucide-react"
 
 import { Logo } from "@/components/logo"
 import { Button } from "@/components/ui/button"
@@ -14,6 +14,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { authClient } from "@/lib/auth-client"
+import { roleHomePath } from "@/lib/auth/helpers"
+import { clearToken } from "@/lib/auth/token"
 import { cn } from "cn"
 
 type NavItem = {
@@ -30,9 +33,22 @@ const NAV_ITEMS: NavItem[] = [
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { data: session, isPending } = authClient.useSession()
 
   const closeMobileMenu = () => setMobileOpen(false)
+
+  async function handleSignOut() {
+    await authClient.signOut()
+    clearToken()
+    closeMobileMenu()
+    router.push("/")
+    router.refresh()
+  }
+
+  const user = session?.user
+  const dashboardHref = roleHomePath(user?.role)
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#A5A58D]/30 bg-[#F7F6F0]">
@@ -68,21 +84,46 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-2 md:flex">
-            <Button
-              render={<Link href="/sign-in" />}
-              nativeButton={false}
-              variant="ghost"
-              className="h-9 px-4 text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
-            >
-              Sign In
-            </Button>
-            <Button
-              render={<Link href="/sign-up" />}
-              nativeButton={false}
-              className="h-9 bg-[#596B3F] px-4 font-semibold text-[#F7F6F0] hover:bg-[#414A35] hover:text-[#F7F6F0]"
-            >
-              Sign Up
-            </Button>
+            {isPending ? null : user ? (
+              <>
+                <Button
+                  render={<Link href={dashboardHref} />}
+                  nativeButton={false}
+                  variant="ghost"
+                  className="h-9 gap-2 px-3 text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
+                >
+                  <User className="size-4" />
+                  <span className="max-w-36 truncate">{user.name}</span>
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  className="h-9 px-4 text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
+                  onClick={handleSignOut}
+                >
+                  <LogOut className="size-4" />
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  render={<Link href="/sign-in" />}
+                  nativeButton={false}
+                  variant="ghost"
+                  className="h-9 px-4 text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
+                >
+                  Sign In
+                </Button>
+                <Button
+                  render={<Link href="/sign-up" />}
+                  nativeButton={false}
+                  className="h-9 bg-[#596B3F] px-4 font-semibold text-[#F7F6F0] hover:bg-[#414A35] hover:text-[#F7F6F0]"
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
           </div>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -131,23 +172,49 @@ export function Navbar() {
               </nav>
 
               <div className="mt-auto flex flex-col gap-2 border-t border-[#A5A58D]/30 p-4">
-                <Button
-                  render={<Link href="/sign-in" />}
-                  nativeButton={false}
-                  variant="outline"
-                  className="border-[#596B3F]/40 bg-transparent text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
-                  onClick={closeMobileMenu}
-                >
-                  Sign In
-                </Button>
-                <Button
-                  render={<Link href="/sign-up" />}
-                  nativeButton={false}
-                  className="bg-[#596B3F] font-semibold text-[#F7F6F0] hover:bg-[#414A35] hover:text-[#F7F6F0]"
-                  onClick={closeMobileMenu}
-                >
-                  Sign Up
-                </Button>
+                {isPending ? null : user ? (
+                  <>
+                    <Button
+                      render={<Link href={dashboardHref} />}
+                      nativeButton={false}
+                      variant="outline"
+                      className="justify-start gap-2 border-[#596B3F]/40 bg-transparent text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
+                      onClick={closeMobileMenu}
+                    >
+                      <User className="size-4" />
+                      <span className="truncate">{user.name}</span>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      className="justify-start gap-2 text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
+                      onClick={handleSignOut}
+                    >
+                      <LogOut className="size-4" />
+                      Sign out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      render={<Link href="/sign-in" />}
+                      nativeButton={false}
+                      variant="outline"
+                      className="border-[#596B3F]/40 bg-transparent text-[#30352B] hover:bg-[#596B3F]/10 hover:text-[#414A35]"
+                      onClick={closeMobileMenu}
+                    >
+                      Sign In
+                    </Button>
+                    <Button
+                      render={<Link href="/sign-up" />}
+                      nativeButton={false}
+                      className="bg-[#596B3F] font-semibold text-[#F7F6F0] hover:bg-[#414A35] hover:text-[#F7F6F0]"
+                      onClick={closeMobileMenu}
+                    >
+                      Sign Up
+                    </Button>
+                  </>
+                )}
               </div>
             </SheetContent>
           </Sheet>
