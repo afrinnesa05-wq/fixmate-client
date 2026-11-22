@@ -10,36 +10,34 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Design direction (FixMate Olive Green)
 
-Modern, minimal, elegant, premium home-service platform. Inspired by the FixMate Olive Green homepage reference: warm cream backgrounds, olive green for primary actions, charcoal for readable typography, soft olive for secondary elements, and gold only for small decorative accents. Avoid excessive gradients, shadows, colours, and unnecessary decorations. Maintain consistent spacing, typography, border radius, and button styles. Apply consistently across all pages and dashboards.
+Modern, minimal, elegant, premium home-service platform. Inspired by the FixMate Olive Green homepage reference: warm off-white backgrounds, olive green for primary actions, charcoal for readable typography, soft sage for secondary elements, and warm beige only for small decorative accents. Avoid excessive gradients, shadows, colours, and unnecessary decorations. Maintain consistent spacing, typography, border radius, and button styles. Apply consistently across all pages and dashboards.
 
 ### Brand colour palette (exact — do not replace, modify, or introduce new brand colours)
 
 | Role | Hex |
 | --- | --- |
-| Primary | `#667044` |
-| Secondary | `#858B68` |
-| Background | `#F7F6EF` |
-| Text | `#292A24` |
-| Muted | `#A5A58D` |
-| Accent | `#C5A46D` |
-| Dark section | `#34382B` |
+| Primary Olive | `#596B3F` |
+| Warm Off-white | `#F7F6F0` |
+| Charcoal Text | `#30352B` |
+| Soft Sage | `#A8B39A` |
+| Warm Beige | `#E8DFC9` |
+| Deep Olive | `#414A35` |
 
 ### How the colours are distributed
 
 The palette itself is correct — the risk is in how colours are distributed. Keep this balance:
 
-- `#667044` (Primary) — the **dominant** brand colour. Use it for important actions and highlights: primary CTAs, links, active states, key accents.
-- `#F7F6EF` (Background) — warm cream backgrounds for pages and surfaces.
-- `#292A24` (Text) — readable typography everywhere.
-- `#858B68` (Secondary) — **sparingly**, only for secondary elements.
-- `#A5A58D` (Muted) — muted text and subtle borders only.
-- `#C5A46D` (Accent) — **only** small decorative accents (e.g. footer headings, icon highlights, logo accent).
-- `#34382B` (Dark section) — mainly for a dark footer or selected dark sections.
+- `#596B3F` (Primary Olive) — the **dominant** brand colour. Use it for important actions and highlights: primary CTAs, links, active states, key accents.
+- `#F7F6F0` (Warm Off-white) — warm off-white backgrounds for pages and surfaces, and light text on dark sections.
+- `#30352B` (Charcoal Text) — readable typography everywhere.
+- `#A8B39A` (Soft Sage) — secondary elements and icons (e.g. footer icons, logo accent on dark).
+- `#E8DFC9` (Warm Beige) — **only** small decorative accents and warm neutral tints.
+- `#414A35` (Deep Olive) — mainly for the dark footer or selected dark sections, and for darker olive hover states.
 
 Rules:
 
 - Only colours from this palette (plus white and neutral tints/shades derived from them). Do not introduce new hues.
 - **Avoid using too many colours in the same component.** Usually: background + text + at most one accent. Maintain visual consistency and a premium, minimal aesthetic.
-- Use Tailwind arbitrary values (`bg-[#667044]`, `text-[#292A24]`) or add tokens to `app/globals.css` when a colour is used repeatedly.
-- The Navbar and Footer use this palette: cream/charcoal/olive on the Navbar, deep olive with gold accents on the Footer. Keep them on it.
+- Use Tailwind arbitrary values (`bg-[#596B3F]`, `text-[#30352B]`) or add tokens to `app/globals.css` when a colour is used repeatedly.
+- The Navbar and Footer use this palette: off-white/charcoal/olive on the Navbar, deep olive with soft sage accents on the Footer. Keep them on it.
 - Keep spacing, radius, and shadow treatment consistent: soft shadows (`shadow-sm`/`shadow-md`), rounded cards (`rounded-lg`/`rounded-xl`), and restrained borders.
