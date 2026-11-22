@@ -1,3 +1,4 @@
+
 /**
  * Frontend-only client for the FixMate backend services API.
  * The backend is built separately — these helpers only read from it.
@@ -36,6 +37,7 @@ export type ServiceCardData = {
 export type ServiceDetailData = ServiceCardData & {
   description: string
   duration: string
+  area: string
   rating: number
   reviewCount: number
   isAvailable: boolean
@@ -61,6 +63,7 @@ type RawService = {
   technicianName?: string
   description?: string
   duration?: string
+  area?: string
   rating?: number
   reviewCount?: number
   isAvailable?: boolean
@@ -155,6 +158,7 @@ function normalizeDetail(
     ...base,
     description: raw.description ?? "",
     duration: raw.duration ?? "",
+    area: raw.area ?? "",
     rating: typeof raw.rating === "number" ? raw.rating : 0,
     reviewCount: typeof raw.reviewCount === "number" ? raw.reviewCount : 0,
     isAvailable: raw.isAvailable ?? false,
@@ -365,6 +369,7 @@ export type CreateServiceInput = {
   price: number
   duration?: string
   description: string
+  area?: string
   imageBase64?: string
 }
 
